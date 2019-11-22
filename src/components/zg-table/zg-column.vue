@@ -1,7 +1,7 @@
 /*
- * FileName: lb-column.vue
+ * FileName: zg-column.vue
  * Remark: element-column
- * Project: lb-element-table
+ * Project: zg-element-table
  * Author: LiuBing
  * File Created: Tuesday, 19th March 2019 9:58:23 am
  * Last Modified: Tuesday, 19th March 2019 10:14:42 am
@@ -41,40 +41,40 @@
 
     <template slot="header"
       slot-scope="scope">
-      <lb-render v-if="column.renderHeader"
+      <zg-render v-if="column.renderHeader"
         :scope="scope"
         :render="column.renderHeader">
-      </lb-render>
+      </zg-render>
       <span v-else>{{ scope.column.label }}</span>
     </template>
 
     <template slot-scope="scope">
-      <lb-render :scope="scope"
+      <zg-render :scope="scope"
         :render="column.render">
-      </lb-render>
+      </zg-render>
     </template>
 
     <template v-if="column.children">
-      <lb-column v-for="(col, index) in column.children"
+      <zg-column v-for="(col, index) in column.children"
         :key="index"
         :column="col">
-      </lb-column>
+      </zg-column>
     </template>
   </el-table-column>
 </template>
 
 <script>
-import LbRender from './lb-render'
+import ZgRender from './zg-render'
 import forced from './forced.js'
 export default {
-  name: 'LbColumn',
+  name: 'ZgColumn',
   props: {
     column: Object,
     headerAlign: String,
     align: String
   },
   components: {
-    LbRender
+    ZgRender
   },
   methods: {
     setColumn () {

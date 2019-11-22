@@ -1,8 +1,8 @@
 <template>
   <div>
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data">
-    </lb-table>
+    </zg-table>
 
     <el-dialog :visible.sync="dialogVisible"
       title="编辑"

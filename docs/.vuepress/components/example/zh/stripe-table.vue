@@ -1,8 +1,8 @@
 <template>
-  <lb-table stripe
+  <zg-table stripe
     :column="tableData.column"
     :data="tableData.data">
-  </lb-table>
+  </zg-table>
 </template>
 
 <script>

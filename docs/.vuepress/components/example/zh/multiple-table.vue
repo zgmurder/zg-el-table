@@ -1,10 +1,10 @@
 <template>
   <div>
-    <lb-table ref="multipleTable"
+    <zg-table ref="multipleTable"
       :column="tableData.column"
       :data="tableData.data"
       @selection-change="handleSelectionChange">
-    </lb-table>
+    </zg-table>
     <div style="margin-top: 20px">
       <el-button @click="toggleSelection([tableData.data[1], tableData.data[2]])">切换第二、第三行的选中状态</el-button>
       <el-button @click="toggleSelection()">取消选择</el-button>

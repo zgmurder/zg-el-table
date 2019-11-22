@@ -21,11 +21,11 @@ sidebar: auto
   <example-zh-align-table slot="source"></example-zh-align-table>
   默认表头及表格内容左对齐，可以分别设置不同字段的表头及表格内容对齐方式。
 
-  `lb-table`设置`align`属性可以设置整体表格的对齐方式，默认`left`左对齐，可配置项：`left`、`center`、`right`。
+  `zg-table`设置`align`属性可以设置整体表格的对齐方式，默认`left`左对齐，可配置项：`left`、`center`、`right`。
 
-  `column`中可单独为某个字段配置`align`，优先级`column配置的align` > `lb-table配置的align`。
+  `column`中可单独为某个字段配置`align`，优先级`column配置的align` > `zg-table配置的align`。
   
-  表头对齐`header-align`同理，如果不设置对齐方式同`column`和`lb-table`设置的`align`
+  表头对齐`header-align`同理，如果不设置对齐方式同`column`和`zg-table`设置的`align`
 
   <<< @/docs/.vuepress/components/example/zh/align-table.vue
 </demo-block>
@@ -61,7 +61,7 @@ sidebar: auto
 
 <demo-block>
   <example-zh-fixed-header-table slot="source"></example-zh-fixed-header-table>
-  只要在`lb-table`元素中定义了`height`属性，即可实现固定表头的表格，而不需要额外的代码。
+  只要在`zg-table`元素中定义了`height`属性，即可实现固定表头的表格，而不需要额外的代码。
 
   <<< @/docs/.vuepress/components/example/zh/fixed-header-table.vue
 </demo-block>
@@ -123,7 +123,7 @@ sidebar: auto
 
 <demo-block>
   <example-zh-sort-table slot="source"></example-zh-sort-table>
-  在`column`相应列设置`sortable`属性即可实现以该列为基准的排序，接受一个`Boolean`，默认为`false`。可以通过 `lb-table` 的default-sort属性设置默认的排序列和排序顺序。可以使用`sort-method`或者`sort-by`使用自定义的排序规则。如果需要后端排序，需将`sortable`设置为`custom`，同时在 `lb-table` 上监听`sort-change`事件，在事件回调中可以获取当前排序的字段名和排序顺序，从而向接口请求排序后的表格数据。在本例中，我们还使用了`formatter`属性，它用于格式化指定列的值，接受一个`Function`，会传入两个参数：`row`和`column`，可以根据自己的需求进行处理。
+  在`column`相应列设置`sortable`属性即可实现以该列为基准的排序，接受一个`Boolean`，默认为`false`。可以通过 `zg-table` 的default-sort属性设置默认的排序列和排序顺序。可以使用`sort-method`或者`sort-by`使用自定义的排序规则。如果需要后端排序，需将`sortable`设置为`custom`，同时在 `zg-table` 上监听`sort-change`事件，在事件回调中可以获取当前排序的字段名和排序顺序，从而向接口请求排序后的表格数据。在本例中，我们还使用了`formatter`属性，它用于格式化指定列的值，接受一个`Function`，会传入两个参数：`row`和`column`，可以根据自己的需求进行处理。
 
   <<< @/docs/.vuepress/components/example/zh/sort-table.vue
 </demo-block>
@@ -209,7 +209,7 @@ sidebar: auto
 
 <demo-block>
   <example-zh-merge-row-column-table slot="source"></example-zh-merge-row-column-table>
-  通过给`lb-table`传入`span-method`方法可以实现合并行或列，方法的参数是一个对象，里面包含当前行`row`、当前列`column`、当前行号`rowIndex`、当前列号`columnIndex`四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表`rowspan`，第二个元素代表`colspan`。 也可以返回一个键名为`rowspan`和`colspan`的对象。
+  通过给`zg-table`传入`span-method`方法可以实现合并行或列，方法的参数是一个对象，里面包含当前行`row`、当前列`column`、当前行号`rowIndex`、当前列号`columnIndex`四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表`rowspan`，第二个元素代表`colspan`。 也可以返回一个键名为`rowspan`和`colspan`的对象。
 
   <<< @/docs/.vuepress/components/example/zh/merge-row-column-table.vue
 </demo-block>
@@ -221,7 +221,7 @@ sidebar: auto
 
 <demo-block>
   <example-zh-pagination-table slot="source"></example-zh-pagination-table>
-  `lb-table`设置属性`pagination`即可开启分页，分页相关参数及用法同`el-pagination`。暂时新增几个新参数，`paginationTop`表示分页距离表格的间距，默认`15px`,`paginationAlign`分页的对齐方式，默认为`right`,分页整体显示在右侧，可配置`left`、`center`、`right`
+  `zg-table`设置属性`pagination`即可开启分页，分页相关参数及用法同`el-pagination`。暂时新增几个新参数，`paginationTop`表示分页距离表格的间距，默认`15px`,`paginationAlign`分页的对齐方式，默认为`right`,分页整体显示在右侧，可配置`left`、`center`、`right`
 
   ::: tip
   由于分页和表格的`current-change`冲突，所以分页请使用`p-current-change`
@@ -235,7 +235,7 @@ sidebar: auto
 
 <demo-block>
   <example-zh-merge-table slot="source"></example-zh-merge-table>
-  `lb-table`上配置`merge`,`merge`为一个包含需要合并的`column`中`prop`的数组，配置后会自动将值相同的项自动合并。
+  `zg-table`上配置`merge`,`merge`为一个包含需要合并的`column`中`prop`的数组，配置后会自动将值相同的项自动合并。
 
   <<< @/docs/.vuepress/components/example/zh/merge-table.vue
 </demo-block>

@@ -1,24 +1,25 @@
 <template>
-  <lb-table v-loading="loading"
-    :column="tableData.column"
-    :data="tableData.data"
-    pagination
-    background
-    layout="total, sizes, prev, pager, next, jumper"
-    :page-sizes="[5, 10, 20, 30]"
-    :pager-count="5"
-    :current-page.sync="currentPage"
-    :total="100"
-    :page-size="pageSize"
-    @size-change="handleSizeChange"
-    @p-current-change="handleCurrentChange">
-  </lb-table>
+  <div>
+    <zg-table v-loading='loading' :initpage="initpage" :column="tableData.column" :data="tableData.data"  @change="handleChange" >
+    </zg-table>
+  </div>
 </template>
 
 <script>
+import ZgTable from './zg-table/zg-table'
 export default {
+  name: 'HelloWorld',
+  components: {
+    ZgTable
+  },
   data () {
     return {
+      initpage: {
+        currentPage: 1,
+        pageSizes: [6, 10, 15],
+        pageSize: 6,
+        background: false
+      },
       tableData: {
         column: [
           {
@@ -26,47 +27,63 @@ export default {
             label: '日期'
           },
           {
-            prop: 'name',
-            label: '姓名'
+            prop: 'page',
+            label: '页码'
+          },
+          {
+            prop: 'province',
+            label: '省份'
+          },
+          {
+            prop: 'city',
+            label: '市区'
           },
           {
             prop: 'address',
             label: '地址'
           }
         ],
-        data: []
+        data: [
+          // {
+          //   date: '2016-05-03',
+          //   name: '王小虎1',
+          //   province: '上海',
+          //   city: '普陀区',
+          //   address: '上海市普陀区金沙江路 1518 弄',
+          //   zip: 200333
+          // },
+        ]
       },
-      loading: false,
-      currentPage: 1,
-      pageSize: 5,
+      loading: true
     }
   },
-  created () {
-    this.createData(this.pageSize)
-  },
   methods: {
-    createData (length) {
+    handleChange (pageConfig) {
+      this._temPageConfig = pageConfig || this._temPageConfig
+      if (!pageConfig) this._temPageConfig.init()
+      const { pageSize, currentPage } = this._temPageConfig
       this.loading = true
-      let data = []
-      for (let i = 0; i < length; i++) {
-        data.push({
-          date: '2016-05-02',
-          name: `王小虎-${this.currentPage}-${i + 1}`,
-          address: `上海市普陀区金沙江路 -${this.currentPage}-${i + 1} 弄`
-        })
-      }
-      setTimeout(() => {
-        this.tableData.data = data
+      this.getHistory({ page: currentPage, size: pageSize }).then(res => {
+        this.tableData.data = res.data
+        this._temPageConfig.total = res.total
         this.loading = false
-      }, 1000)
+      })
     },
-    handleSizeChange (val) {
-      this.currentPage = 1
-      this.pageSize = val
-      this.createData(this.pageSize)
-    },
-    handleCurrentChange () {
-      this.createData(this.pageSize)
+    getHistory (option) {
+      const { page, size } = option
+      const data = Array.from({ length: size }).map(item => ({
+        date: '2016-05-03',
+        name: '王小虎1',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        page
+      }))
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({ total: 25, code: 200, data })
+        }, 1000)
+      })
     }
   }
 }

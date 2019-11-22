@@ -1,25 +1,25 @@
 <template>
   <div>
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       border
       align="center">
-    </lb-table>
+    </zg-table>
 
-    <lb-table :column="tableData.column2"
+    <zg-table :column="tableData.column2"
       :data="tableData.data"
       border
       align="center"
       style="margin-top: 20px">
-    </lb-table>
+    </zg-table>
 
-    <lb-table :column="tableData.column3"
+    <zg-table :column="tableData.column3"
       :data="tableData.data"
       border
       align="center"
       header-align="right"
       style="margin-top: 20px">
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

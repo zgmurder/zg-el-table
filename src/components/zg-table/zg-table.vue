@@ -1,7 +1,7 @@
 /*
- * FileName: lb-table.vue
+ * FileName: zg-table.vue
  * Remark: element table
- * Project: lb-element-table
+ * Project: zg-element-table
  * Author: LiuBing
  * File Created: Tuesday, 19th March 2019 9:55:27 am
  * Last Modified: Tuesday, 19th March 2019 9:55:34 am
@@ -9,35 +9,47 @@
  */
 
 <template>
-  <div class="lb-table">
+  <div class="zg-table">
     <el-table ref="elTable"
       v-bind="$attrs"
       v-on="$listeners"
       :data="data"
       :span-method="this.merge ? this.mergeMethod : this.spanMethod">
-      <lb-column v-bind="$attrs"
+      <zg-column v-bind="$attrs"
         v-for="(item, index) in column"
         :key="index"
         :column="item">
-      </lb-column>
+      </zg-column>
     </el-table>
-    <el-pagination class="lb-table-pagination"
+    <!-- <el-pagination class="zg-table-pagination"
       v-if="pagination"
       v-bind="$attrs"
       v-on="$listeners"
       @current-change="paginationCurrentChange"
       :style="{ 'margin-top': paginationTop, 'text-align': paginationAlign }">
-    </el-pagination>
+    </el-pagination> -->
+    <el-pagination
+      v-if="!!pageConfig.total"
+      :background="pageConfig.background"
+      :current-page="pageConfig.currentPage"
+      :page-sizes="pageConfig.pageSizes"
+      :page-size="pageConfig.pageSize"
+      :layout="pageConfig.layout"
+      :total="pageConfig.total"
+      @size-change="pageConfig.handleSizeChange"
+      @current-change="pageConfig.handleCurrentChange"
+    />
   </div>
 </template>
 
 <script>
-import LbColumn from './lb-column'
+import ZgColumn from './zg-column'
 export default {
   props: {
     column: Array,
     data: Array,
     spanMethod: Function,
+    initpage: Object,
     pagination: {
       type: Boolean,
       default: false
@@ -53,14 +65,35 @@ export default {
     merge: Array
   },
   components: {
-    LbColumn
+    ZgColumn
   },
-  data () {
+  data (vm) {
+    const { background = true, currentPage = 1, pageSizes, pageSize = 15, layout = `total, sizes, prev, pager, next, jumper` } = vm.initpage || {}
+    const defaultValue = { background, currentPage, pageSizes, pageSize, layout }
+    const pageConfig = {
+      ...defaultValue,
+      total: 0,
+      handleSizeChange: pageSize => {
+        if (pageSize) vm.pageConfig.pageSize = pageSize
+        this.$emit('change', vm.pageConfig || pageConfig)
+      },
+      handleCurrentChange: currentPage => {
+        if (currentPage) vm.pageConfig.currentPage = currentPage
+        this.$emit('change', vm.pageConfig || pageConfig)
+      },
+      init: () => {
+        Object.assign(vm.pageConfig, defaultValue)
+      }
+    }
+    pageConfig.handleCurrentChange()
+
     return {
       mergeLine: {},
-      mergeIndex: {}
+      mergeIndex: {},
+      pageConfig
     }
   },
+
   created () {
     this.getMergeArr(this.data, this.merge)
   },
@@ -68,6 +101,30 @@ export default {
     dataLength () {
       return this.data.length
     }
+    // pageConfig () {
+    //   const defaultValue = {
+    //     currentPage: 1,
+    //     pageSizes: [10, 50, 100],
+    //     pageSize: 10
+    //   }
+    //   const pageConfig = {
+    //     ...defaultValue,
+    //     total: 0,
+    //     handleSizeChange: pageSize => {
+    //       if (pageSize) this.pageConfig.pageSize = pageSize
+    //       this.$emit('change', this.pageConfig || pageConfig)
+    //     },
+    //     handleCurrentChange: currentPage => {
+    //       if (currentPage) this.pageConfig.currentPage = currentPage
+    //       this.$emit('change', this.pageConfig || pageConfig)
+    //     },
+    //     init: () => {
+    //       Object.assign(this.pageConfig, defaultValue)
+    //     }
+    //   }
+    //   pageConfig.handleCurrentChange()
+    //   return pageConfig
+    // }
   },
   methods: {
     clearSelection () {

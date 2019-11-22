@@ -1,7 +1,7 @@
 <template>
-  <lb-table :column="tableData.column"
+  <zg-table :column="tableData.column"
     :data="tableData.data">
-  </lb-table>
+  </zg-table>
 </template>
 
 <script>

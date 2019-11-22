@@ -1,11 +1,11 @@
 <template>
   <div>
-    <lb-table ref="lbTable"
+    <zg-table ref="lbTable"
       highlight-current-row
       :column="tableData.column"
       :data="tableData.data"
       @current-change="handleCurrentChange">
-    </lb-table>
+    </zg-table>
     <div style="margin-top: 20px">
       <el-button @click="setCurrent(tableData.data[1])">选中第二行</el-button>
       <el-button @click="setCurrent()">取消选择</el-button>

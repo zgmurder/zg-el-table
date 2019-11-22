@@ -1,17 +1,17 @@
 <template>
   <div>
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       :span-method="arraySpanMethod"
       border>
-    </lb-table>
+    </zg-table>
 
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       :span-method="objectSpanMethod"
       style="margin-top: 20px"
       border>
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

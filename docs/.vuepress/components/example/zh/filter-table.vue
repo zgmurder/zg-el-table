@@ -2,10 +2,10 @@
   <div>
     <el-button @click="resetDateFilter">清除日期过滤器</el-button>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
-    <lb-table ref="filterTable"
+    <zg-table ref="filterTable"
       :column="tableData.column"
       :data="tableData.data">
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

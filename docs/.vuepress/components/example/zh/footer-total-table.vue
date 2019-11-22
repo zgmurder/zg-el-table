@@ -1,19 +1,19 @@
 <template>
   <div>
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       border
       show-summary>
-    </lb-table>
+    </zg-table>
 
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       :summary-method="getSummaries"
       style="margin-top: 20px"
       height="250"
       border
       show-summary>
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

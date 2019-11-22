@@ -1,22 +1,22 @@
 <template>
   <div>
-    <lb-table :column="tableData1.column"
+    <zg-table :column="tableData1.column"
       :data="tableData1.data"
       border
       row-key="id"
       border
       default-expand-all
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-    </lb-table>
+    </zg-table>
     <br />
-    <lb-table :column="tableData1.column"
+    <zg-table :column="tableData1.column"
       :data="tableData2.data"
       row-key="id"
       border
       lazy
       :load="load"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

@@ -1,9 +1,9 @@
 <template>
-  <lb-table :column="column"
+  <zg-table :column="column"
     :data="data"
     border
     height="250">
-  </lb-table>
+  </zg-table>
 </template>
 
 <script>

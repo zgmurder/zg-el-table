@@ -1,17 +1,17 @@
 <template>
   <div>
-    <lb-table :column="tableData.column"
+    <zg-table :column="tableData.column"
       :data="tableData.data"
       :merge="['name', 'proportion', 'material', 'value3']"
       border>
-    </lb-table>
+    </zg-table>
 
-    <lb-table :column="tableData2.column"
+    <zg-table :column="tableData2.column"
       :data="tableData2.data"
       :merge="['name', 'proportion']"
       border
       style="margin-top: 20px">
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
-  <lb-table border
+  <zg-table border
     :column="tableData.column"
     :data="tableData.data">
-  </lb-table>
+  </zg-table>
 </template>
 
 <script>

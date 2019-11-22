@@ -1,10 +1,10 @@
 <template>
   <div>
-    <lb-table ref="multipleTable"
+    <zg-table ref="multipleTable"
       :column="tableData.column"
       :data="tableData.data"
       :default-sort = "{prop: 'date', order: 'descending'}">
-    </lb-table>
+    </zg-table>
   </div>
 </template>
 

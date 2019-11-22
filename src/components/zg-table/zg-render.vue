@@ -1,7 +1,7 @@
 /*
- * FileName: lb-render.vue
+ * FileName: zg-render.vue
  * Remark: 自定义render
- * Project: lb-element-table
+ * Project: zg-element-table
  * Author: LiuBing
  * File Created: Tuesday, 19th March 2019 10:15:30 am
  * Last Modified: Tuesday, 19th March 2019 10:15:32 am
@@ -9,7 +9,7 @@
  */
 <script>
 export default {
-  name: 'LbRender',
+  name: 'ZgRender',
   functional: true,
   props: {
     scope: Object,

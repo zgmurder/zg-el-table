@@ -44,6 +44,7 @@
 </template>
 
 <style lang="scss">
+
 .demo-block {
   border: solid 1px #ebebeb;
   border-radius: 3px;
@@ -94,6 +95,7 @@
       height: 18px;
       line-height: 18px;
     }
+    
   }
   .highlight {
     pre {

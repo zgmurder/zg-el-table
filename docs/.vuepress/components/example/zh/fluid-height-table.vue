@@ -1,8 +1,8 @@
 <template>
-  <lb-table :column="tableData.column"
+  <zg-table :column="tableData.column"
     :data="tableData.data"
     max-height="250">
-  </lb-table>
+  </zg-table>
 </template>
 
 <script>
