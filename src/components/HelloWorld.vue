@@ -152,17 +152,15 @@ export default {
           render (h, { that, formData, context }) {
             return <div>
               <el-button type="primary" on-click={() => {
-                context.resetFields()
-                // context.validate((valid) => {
-                //   if (valid) {
-                //     console.log(context.formData)
-
-                //     alert('submit!')
-                //   } else {
-                //     console.log('error submit!!')
-                //     return false
-                //   }
-                // })
+                context.validate((valid) => {
+                  if (valid) {
+                    console.log(context.formData)
+                    alert('submit!')
+                  } else {
+                    console.log('error submit!!')
+                    return false
+                  }
+                })
               }}>提交</el-button>
               <el-button on-click={() => {
                 context.resetFields()
@@ -191,6 +189,9 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    validate () {
+
     }
   }
 }
