@@ -18,7 +18,12 @@ export default {
         currentPage: 1,
         pageSizes: [6, 10, 15],
         pageSize: 6,
-        background: false
+        background: true,
+        prevText: '哈哈哥',
+        style: {
+          textAlign: 'left',
+          marginTop: '20px'
+        }
       },
       tableData: {
         column: [

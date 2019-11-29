@@ -1,13 +1,3 @@
-/*
- * FileName: zg-table.vue
- * Remark: element table
- * Project: zg-element-table
- * Author: LiuBing
- * File Created: Tuesday, 19th March 2019 9:55:27 am
- * Last Modified: Tuesday, 19th March 2019 9:55:34 am
- * Modified By: LiuBing
- */
-
 <template>
   <div class="zg-table">
     <el-table ref="elTable"
@@ -30,7 +20,6 @@
     </el-pagination> -->
     <el-pagination
       v-if="!!pageConfig.total"
-      :background="pageConfig.background"
       :current-page="pageConfig.currentPage"
       :page-sizes="pageConfig.pageSizes"
       :page-size="pageConfig.pageSize"
@@ -38,6 +27,7 @@
       :total="pageConfig.total"
       @size-change="pageConfig.handleSizeChange"
       @current-change="pageConfig.handleCurrentChange"
+      v-bind="initpage"
     />
   </div>
 </template>
@@ -50,26 +40,14 @@ export default {
     data: Array,
     spanMethod: Function,
     initpage: Object,
-    pagination: {
-      type: Boolean,
-      default: false
-    },
-    paginationTop: {
-      type: String,
-      default: '15px'
-    },
-    paginationAlign: {
-      type: String,
-      default: 'right'
-    },
     merge: Array
   },
   components: {
     ZgColumn
   },
   data (vm) {
-    const { background = true, currentPage = 1, pageSizes, pageSize = 15, layout = `total, sizes, prev, pager, next, jumper` } = vm.initpage || {}
-    const defaultValue = { background, currentPage, pageSizes, pageSize, layout }
+    const { currentPage = 1, pageSizes, pageSize = 15, layout = `total, sizes, prev, pager, next, jumper` } = vm.initpage || {}
+    const defaultValue = { currentPage, pageSizes, pageSize, layout }
     const pageConfig = {
       ...defaultValue,
       total: 0,
@@ -101,30 +79,6 @@ export default {
     dataLength () {
       return this.data.length
     }
-    // pageConfig () {
-    //   const defaultValue = {
-    //     currentPage: 1,
-    //     pageSizes: [10, 50, 100],
-    //     pageSize: 10
-    //   }
-    //   const pageConfig = {
-    //     ...defaultValue,
-    //     total: 0,
-    //     handleSizeChange: pageSize => {
-    //       if (pageSize) this.pageConfig.pageSize = pageSize
-    //       this.$emit('change', this.pageConfig || pageConfig)
-    //     },
-    //     handleCurrentChange: currentPage => {
-    //       if (currentPage) this.pageConfig.currentPage = currentPage
-    //       this.$emit('change', this.pageConfig || pageConfig)
-    //     },
-    //     init: () => {
-    //       Object.assign(this.pageConfig, defaultValue)
-    //     }
-    //   }
-    //   pageConfig.handleCurrentChange()
-    //   return pageConfig
-    // }
   },
   methods: {
     clearSelection () {
