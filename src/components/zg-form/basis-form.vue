@@ -1,26 +1,21 @@
 <template>
-  <div>
-    <zg-form :schema="schema"  label-width="80px"></zg-form>
-  </div>
+  <zg-form :schema="schema"  label-width="80px"></zg-form>
 </template>
 
 <script>
-import ZgTable from './zg-table/zg-table'
-import ZgForm from './zg-form'
 export default {
-  name: 'HelloWorld',
-  components: {
-    // ZgTable,
-    ZgForm
-  },
+  name: 'BasisForm',
   data () {
     return {
       schema: [
         {
           type: 'input',
           vModel: 'name',
-          required: true,
-          label: '活动名称'
+          label: '活动名称',
+          rules:[
+            { required: true, message: '请输入活动名称', trigger: 'blur' },
+            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          ]
         },
         {
           type: 'select',
@@ -32,17 +27,18 @@ export default {
           vModel: 'date1',
           options: ['区域一', '区域二'],
           required: true,
-          label: '活动区域'
+          label: '活动区域',
+          message:'请输入活动名称'
         },
         {
-          render (h) {
+          render (h,{formData}) {
             return <div>
               <el-col span={11}>
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="date" placeholder="选择日期" value={formData.date1} on-change={value=>formData.date1 = value} style="width: 100%;"></el-date-picker>
               </el-col>
               <el-col class="line" style="text-align:center" span={2}>-</el-col>
               <el-col span={11}>
-                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+                <el-time-picker placeholder="选择时间" value={formData.date2} on-change={value=>formData.date2 = value} style="width: 100%;"></el-time-picker>
               </el-col>
             </div>
           },
@@ -78,9 +74,17 @@ export default {
           render (h, { that, formData, context }) {
             return <div>
               <el-button type="primary" on-click={() => {
-                console.log(context)
+                context.validate((valid) => {
+                if (valid) {
+                  alert('submit!');
+                } else {
+                  console.log('error submit!!');
+                  return false;
+                }});
               }}>提交</el-button>
-              <el-button >重置</el-button>
+              <el-button on-click={()=>{
+                context.resetFields();
+              }} >重置</el-button>
             </div>
           }
         }

@@ -8,7 +8,7 @@ module.exports = {
     }
   },
   themeConfig: {
-    repo: 'liub1934/zg-element-table',
+    repo: '/zg-element-table',
     docsDir: 'docs',
     locales: {
       '/zh/': {

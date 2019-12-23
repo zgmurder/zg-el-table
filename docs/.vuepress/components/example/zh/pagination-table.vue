@@ -6,12 +6,7 @@
 </template>
 
 <script>
-import ZgTable from './zg-table/zg-table'
 export default {
-  name: 'HelloWorld',
-  components: {
-    ZgTable
-  },
   data () {
     return {
       initpage: {

@@ -16,13 +16,13 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git config --local user.name "liub1934"
-git config --local user.email "liub1934@gmail.com"
+git config --local user.name "zgmurder"
+git config --local user.email "294069733@qq.com"
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f https://${access_token}@github.com/liub1934/lb-element-table.git master:gh-pages
+git push -f https://${access_token}@github.com/zgmurder/zg-el-table.git master:gh-pages
 
 cd -
