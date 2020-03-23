@@ -19,7 +19,6 @@ npm run serve
 ```
 
 ### Compiles and hot-reloads for docs
-`/lb-element-table/zh/guide/`
 ```
 npm run docs:dev
 ```
